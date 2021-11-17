@@ -55,9 +55,9 @@ function App() {
   function createPost() {
     axios
       .post(baseURL, {
-        distance: '1',
-        direction: '2', // change back to direction
-        time: '3',
+        distance: values.distance,
+        direction: values.direction, // change back to direction
+        time: values.time,
       })
       .then((response) => {
         setValues(response.data);
@@ -67,6 +67,7 @@ function App() {
   if (!values) return null;
   
   return (
+    // add field titles & bootstrap
     // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <div className="App">
       <header className="App-header">
