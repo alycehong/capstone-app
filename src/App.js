@@ -1,8 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 // import AppForm from './components/AppForm';
 
+const baseURL = "https://a4vgozj136.execute-api.us-east-1.amazonaws.com/Prod/hello";
+
+
 function App() {
+
+  // distance
+
   const [values, setValues] = useState({
     distance: '',
     direction: '',
@@ -44,13 +51,29 @@ function App() {
     }
     setSubmitted(true);
     };
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        distance: '1',
+        direction: '2', // change back to direction
+        time: '3',
+      })
+      .then((response) => {
+        setValues(response.data);
+      });
+    }
+  
+  if (!values) return null;
+  
   return (
+    // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <div className="App">
       <header className="App-header">
         {/* <AppForm></AppForm> */}
         <div class="form-container">
       <form class="register-form" onSubmit={handleSubmit}>
-        {submitted && <div class="success-message">The information has been sent!</div>}
+        {valid && submitted && <div class="success-message">The information has been sent!</div>}
         <input
           id="distance"
           class="form-field"
@@ -61,7 +84,7 @@ function App() {
           value={values.distance}
           onChange={handleDistanceInputChange} 
         />
-        {submitted && !values.distance && <span id='distance-error'>Please enter a distance</span>}
+        {/* {submitted && !values.distance && <span id='distance-error'>Please enter a distance</span>} */}
         <input
           id="direction"
           class="form-field"
@@ -71,7 +94,7 @@ function App() {
           value={values.direction}
           onChange={handleDirectionInputChange}
         />
-        {submitted && !values.direction && <span id='last-name-error'>Please enter a last name</span>}
+        {/* {submitted && !values.direction && <span id='last-name-error'>Please enter a direction</span>} */}
         <input
           id="time"
           class="form-field"
@@ -81,14 +104,15 @@ function App() {
           value={values.time}
           onChange={handleTimeInputChange}
         />
-        {submitted && !values.time && <span id='email-error'>Please enter a Time</span>}
-        <button class="form-field" type="submit">
+        {/* {submitted && !values.time && <span id='email-error'>Please enter a time</span>} */}
+        <button class="form-field" type="submit" onClick={createPost}>
           Submit
         </button>
       </form>
     </div>
       </header>
     </div>
+    // {/* </link> */}
   );
 }
 
