@@ -67,7 +67,7 @@ const [time,setTime]=useState('');
     }
   
   React.useEffect(() => {
-    console.log(data.message);
+    // console.log(data.message);
     fetch("/backend", {
       credentials: 'include'
     })
