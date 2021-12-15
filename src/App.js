@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 // import FormDropdown from './components/Dropdown';
 // import {distance, direction, time} from './components/Dropdown';
 
-const baseURL = "127.0.0.1:8000/items"; // "https://a4vgozj136.execute-api.us-east-1.amazonaws.com/Prod/hello"
+// const baseURL = "127.0.0.1:8000/items"; // "https://a4vgozj136.execute-api.us-east-1.amazonaws.com/Prod/hello"
 
 function App() {
   const [distance,setDistance]=useState('');
@@ -52,7 +52,7 @@ const [time,setTime]=useState('');
 
   function createPost() {
     axios
-      .post(baseURL, {
+      .post('127.0.0.1:8000/items', {
         distance: distance, 
         direction: direction,
         time: time
