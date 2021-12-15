@@ -52,7 +52,7 @@ const [time,setTime]=useState('');
 
   function createPost() {
     axios
-      .post('127.0.0.1:8000/items', {
+      .post("http://172.25.137.205:8000/items", {
         distance: distance, 
         direction: direction,
         time: time
